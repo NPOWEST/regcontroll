@@ -1,0 +1,45 @@
+{
+    "name": "npowest/regcontroll",
+    "description": "RegControll",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "type": "project",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/NPOWEST/Modbus"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "npowest/modbus": "^1.0",
+        "symfony/http-foundation": "^7.1",
+        "twig/twig": "^3.14"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true,
+            "friendsofphp/php-cs-fixer": true,
+            "nunomaduro/phpinsights": true,
+            "phpmd/phpmd": true,
+            "phpstan/phpstan": true,
+            "phpstan/phpstan-symfony": true,
+            "squizlabs/php_codesniffer": true
+        }
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.44",
+        "friendsofphp/php-cs-fixer": "^3.64",
+        "nunomaduro/phpinsights": "^2.11",
+        "phpmd/phpmd": "^2.15",
+        "phpstan/phpstan": "^1.12",
+        "phpstan/phpstan-symfony": "^1.4",
+        "squizlabs/php_codesniffer": "^3.10"
+    }
+}

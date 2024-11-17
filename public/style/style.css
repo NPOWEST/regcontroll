@@ -1,0 +1,19 @@
+html,
+body {
+  height: 100%;
+}
+
+.form-signin {
+  max-width: 600px;
+  padding: 1rem;
+}
+
+#lsd{
+  height:180px;
+  white-space: pre;
+  font-family:monospace;
+}
+
+.type1,.type2{border-bottom:1px solid #ccc;}
+.type2,.type4,.type5{font-weight:bold;}
+.type5{font-style: italic;}
