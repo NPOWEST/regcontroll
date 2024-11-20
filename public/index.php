@@ -28,11 +28,7 @@ $type      = $request->request->getString('type', '');
 
 $msg = sprintf('42%02x', $key);
 
-// $adr    = '88.204.16.219';
-// $port   = 12042;
-// $mbs    = 127;
-// $query  = ['11','039c450008', '039c4b0008'];
-
+$status = Response::HTTP_OK;
 $lsdMsg = '';
 if ($address && $port && method_exists(Controller::class, $type))
 {
@@ -44,16 +40,23 @@ if ($address && $port && method_exists(Controller::class, $type))
     $modbus->setMsg($msg);
 
     $result = $modbus->app();
-    // echo $result;
 
-    $lsdMsg = $controller->{$type}($result);
+    if (! $result)
+    {
+        $lsdMsg = [['string' => 'Ошибка при получении данных', 'code' => 0]];
+        $status = Response::HTTP_GATEWAY_TIMEOUT;
+    }
+    else
+    {
+        $lsdMsg = $controller->{$type}($result);
+    }
 }
 
 $loader = new FilesystemLoader('../templates');
 $twig   = new Environment(
     $loader,
     [
-        'cache' => './cache',
+        'cache' => '../cache',
     ]
 );
 
@@ -73,7 +76,7 @@ $content = $twig->render(
 
 $response = new Response(
     $content,
-    Response::HTTP_OK,
+    $status,
     ['content-type' => 'text/html']
 );
 $response->send();

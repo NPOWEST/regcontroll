@@ -1,7 +1,7 @@
 {
     "name": "npowest/regcontroll",
     "description": "RegControll",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "proprietary",
     "type": "project",
     "repositories": [

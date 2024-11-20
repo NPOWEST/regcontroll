@@ -12,62 +12,60 @@
     <body class="d-flex align-items-center py-4 bg-body-tertiary">
         <main class="form-signin w-100 m-auto">
             <form action="" method="post" id="controllForm">
-                <div class="row align-items-start">
-                    <div class="col">
-                        <div class="mb-3 row">
-                            <label for="ip" class="col-sm-4 col-form-label">IP address</label>
-                            <div class="col">
-                                <input type="text" class="form-control" id="ip" name="ip" placeholder="0.0.0.0" value="{{ address }}" data-inputmask="'alias': 'ip'" required>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="port" class="col-sm-4 col-form-label">Port</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="port" name="port" placeholder="0" value="{{ port }}" maxlength="6" size="15" required>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="mbAddress" class="col-sm-4 col-form-label">Modbus</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control" id="mbAddress" name="mbAddress" placeholder="0" value="{{ mbAddress }}" min="0" max="255">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="type" class="col-sm-4 col-form-label">Type</label>
-                            <div class="col-sm-6">
-                                <select class="form-select" name="type">
-                                    <option value="lsdWest02"{% if type == "lsdWest02" %} selected{% endif %}>ВЭСТ-02</option>
-                                    <option value="lsdWest02m"{% if type == "lsdWest02m" %} selected{% endif %}>ВЭСТ-02М</option>
-                                </select>
-                            </div>
+                <div class="w100">
+                    <div class="mb-3 row">
+                        <label for="ip" class="col-sm-4 col-form-label">IP address</label>
+                        <div class="col">
+                            <input type="text" class="form-control" id="ip" name="ip" placeholder="0.0.0.0" value="{{ address }}" data-inputmask="'alias': 'ip'" required>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body" id="lsd">
-                                {% include 'lsd.html' %}
-                            </div>
+                    <div class="mb-3 row">
+                        <label for="port" class="col-sm-4 col-form-label">Port</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="port" name="port" placeholder="0" value="{{ port }}" maxlength="6" size="15" required>
                         </div>
-                        <div class="btn-group btn-group-justified w-100" role="group">
-                            <button type="submit" name="key" value="2" class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-                                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
-                                </svg>
-                            </button>
-                            <button type="submit" name="key" value="0" class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
-                                    <circle cx="8" cy="8" r="8"/>
-                                </svg>
-                            </button>
-                            <button type="submit" name="key" value="1" class="btn btn-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                                </svg>
-                            </button>
-                          </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="mbAddress" class="col-sm-4 col-form-label">Modbus</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="mbAddress" name="mbAddress" placeholder="0" value="{{ mbAddress }}" min="0" max="255">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="type" class="col-sm-4 col-form-label">Type</label>
+                        <div class="col-sm-6">
+                            <select class="form-select" name="type">
+                                <option value="lsdWest02"{% if type == "lsdWest02" %} selected{% endif %}>ВЭСТ-02</option>
+                                <option value="lsdWest02m"{% if type == "lsdWest02m" %} selected{% endif %}>ВЭСТ-02М</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="w100">
+                    <div class="card">
+                        <div class="card-body text-bg-success" id="lsd">
+                            {% include 'lsd.html' %}
+                        </div>
+                    </div>
+                    <div class="btn-group btn-group-justified w-100" role="group">
+                        <button type="submit" name="key" value="2" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                            </svg>
+                        </button>
+                        <button type="submit" name="key" value="0" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                                <circle cx="8" cy="8" r="8"/>
+                            </svg>
+                        </button>
+                        <button type="submit" name="key" value="1" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            </svg>
+                        </button>
+                        </div>
 
-                    </div>
-            </div>
+                </div>
             </form>
 
           </main>
