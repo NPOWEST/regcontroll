@@ -53,14 +53,13 @@ final class Controller
      */
     public function lsdWest04(string $msg): array
     {
-        // Разбиваем на чанки по 2 символа (как в других методах)
-        $chunks = str_split($msg, 2);
+        $msgChunks = array_slice(mb_str_split($msg, 2), 3);
 
         $result = [];
         $string = '';
         $code = 0;
 
-        foreach ($chunks as $str)
+        foreach ($msgChunks as $str)
         {
             $bt = hexdec($str);
 

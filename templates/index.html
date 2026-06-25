@@ -11,8 +11,8 @@
     </head>
     <body class="d-flex align-items-center py-4 bg-body-tertiary">
         <main class="form-signin w-100 m-auto">
-            <form action="" method="post" id="controllForm">
-                <div class="w100">
+            <form action="" method="post" id="controllForm" class="row">
+                <div class="col-sm-6">
                     <div class="mb-3 row">
                         <label for="ip" class="col-sm-4 col-form-label">IP address</label>
                         <div class="col">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w100">
+                <div class="col-sm-6">
                     <div class="card">
                         <div class="card-body text-bg-success" id="lsd">
                             {% include 'lsd.html' %}
