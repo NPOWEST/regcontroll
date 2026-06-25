@@ -16,6 +16,8 @@ use function chr;
 
 final class Controller
 {
+    private string $encoding = 'CP1251';
+
     /** @var array<int, string> */
     private array $char = [
         0xA0 => 'Б', 0xA1 => 'Г', 0xA2 => 'Ё', 0xA3 => 'Ж', 0xA4 => 'З',
@@ -45,6 +47,53 @@ final class Controller
     {
         return $this->convertMessage($msg, false);
     }//end lsdWest02m()
+
+    /**
+     * @return array<array<string, int|string>>
+     */
+    public function lsdWest04(string $msg): array
+    {
+        // Разбиваем на чанки по 2 символа (как в других методах)
+        $chunks = str_split($msg, 2);
+
+        $result = [];
+        $string = '';
+        $code = 0;
+
+        foreach ($chunks as $str)
+        {
+            $bt = hexdec($str);
+
+            if (10 == $bt)
+            {
+                $result[] = ['string' => $string, 'code' => $code];
+                $string = '';
+                $code = 0;
+                continue;
+            }
+
+            if ($bt < 10)
+            {
+                $code = $bt;
+            }
+
+            $char = '';
+            // Для UTF-8 используем прямое преобразование
+            if ($bt >= 32)
+            {
+                $char = chr($bt);
+            }
+
+            $string .= $char;
+        }
+
+        if ('' !== $string)
+        {
+            $result[] = ['string' => $string, 'code' => $code];
+        }
+
+        return array_slice($result, 0, 6);
+    }//end lsdWest04()
 
     /**
      * @return array<array<string, int|string>>
@@ -97,7 +146,7 @@ final class Controller
                 return chr($bt);
 
             case $bt >= 192:
-                return iconv('CP1251', 'UTF-8', chr($bt));
+                return $this->encoding == 'UTF-8' ? chr($bt) : iconv($this->encoding, 'UTF-8', chr($bt));
             default:
                 return '';
                 // Не возвращает ничего, если символ не определен

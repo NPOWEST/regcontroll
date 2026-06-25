@@ -20,7 +20,7 @@ require_once '../vendor/autoload.php';
 
 $request = Request::createFromGlobals();
 
-$address   = $request->request->getString('ip', '');
+$address   = $request->request->getString('ip', '88.204.16.219');
 $port      = $request->request->getInt('port', 0);
 $mbAddress = $request->request->getInt('mbAddress', 0);
 $key       = $request->request->getInt('key', 0);
