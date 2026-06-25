@@ -53,45 +53,8 @@ final class Controller
      */
     public function lsdWest04(string $msg): array
     {
-        $msgChunks = array_slice(mb_str_split($msg, 2), 3);
-
-        $result = [];
-        $string = '';
-        $code = 0;
-
-        foreach ($msgChunks as $str)
-        {
-            $bt = hexdec($str);
-
-            if (10 == $bt)
-            {
-                $result[] = ['string' => $string, 'code' => $code];
-                $string = '';
-                $code = 0;
-                continue;
-            }
-
-            if ($bt < 10)
-            {
-                $code = $bt;
-            }
-
-            $char = '';
-            // Для UTF-8 используем прямое преобразование
-            if ($bt >= 32)
-            {
-                $char = chr($bt);
-            }
-
-            $string .= $char;
-        }
-
-        if ('' !== $string)
-        {
-            $result[] = ['string' => $string, 'code' => $code];
-        }
-
-        return array_slice($result, 0, 6);
+        $this->encoding = 'UTF-8';
+        return $this->convertMessage($msg, false);
     }//end lsdWest04()
 
     /**
@@ -122,7 +85,17 @@ final class Controller
                 $code = $bt;
             }
 
-            $char    = ($isBasic) ? ($this->char[$bt] ?? chr($bt)) : $this->processExtendedCharacter($bt);
+            if ($this->encoding == 'UTF-8') {
+                $char = '';
+                // Для UTF-8 используем прямое преобразование
+                if ($bt >= 32)
+                {
+                    $char = chr($bt);
+                }
+            } else {
+                $char = ($isBasic) ? ($this->char[$bt] ?? chr($bt)) : $this->processExtendedCharacter($bt);
+            }
+
             $string .= $char;
         }
 
